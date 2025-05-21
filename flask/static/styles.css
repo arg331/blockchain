@@ -1,0 +1,113 @@
+:root {
+    --bg: #f7f9fc;
+    --text: #111;
+    --primary: #007bff;
+    --panel: #ffffff;
+    --border: #dcdcdc;
+}
+
+body.modo-oscuro {
+    --bg: #111;
+    --text: #eee;
+    --primary: #3399ff;
+    --panel: #1a1a1a;
+    --border: #333;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: var(--primary);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+#modoOscuroBtn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.panel form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+input[type="number"] {
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+button {
+    padding: 0.7rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.bloques-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.bloque {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    font-size: 0.9rem;
+    overflow : hidden;
+}
+
+details {
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+details summary {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}

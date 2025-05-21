@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Añadir Transacciones</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">        
+</head>
+<body>
+    <h1>Indique las transacciones del nuevo bloque</h1>
+    <div class="bloque_nuevo">
+    <form method="post">
+        {% for i in range(num_transacciones) %}
+            <fieldset>
+                <legend>Transacción {{ i + 1 }}</legend>
+                <input type="text" name="transaccion_{{ i }}_pagador" placeholder="Remitente" required>
+                <input type="text" name="transaccion_{{ i }}_receptor" placeholder="Destinatario" required>
+                <input type="number" step="0.01" name="transaccion_{{ i }}_cantidad" placeholder="Cantidad" required>
+            </fieldset>
+        {% endfor %}
+        <button type="submit">Minar bloque</button>
+    </form>
+    </div>
+</body>
+</html>

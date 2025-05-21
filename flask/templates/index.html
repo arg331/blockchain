@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulación de Blockchain </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1> Simulación Blockchain basada en Merkle Tree </h1>
+        <button id="modoOscuroBtn" onclick="toggleModoOscuro()">🌙</button>
+    </header>
+
+    <main>
+        <section class="panel">
+            <h2>➕ Crear nuevo bloque</h2>
+            <form action="/add_block" method="post">
+                <label for="num_transacciones">Número de transacciones</label>
+                <input type="number" name="num_transacciones" min="1" required>
+                <button type="submit">Crear bloque</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>⛓️ Cadena de bloques</h2>
+            <div class="bloques-container">
+                {% for bloque in chain %}
+                    <div class="bloque">
+                        <h3>🧩 Bloque {{ loop.index }}</h3>
+                        <p><strong>Hash:</strong> {{ bloque.hash }}</p>
+                        <p><strong>Hash anterior:</strong> {{ bloque.hash_anterior }}</p>
+                        <p><strong>Timestamp:</strong> {{ bloque.marca_de_tiempo }}</p>
+                        <p><strong>Nonce:</strong> {{ bloque.nonce }}</p>
+                        <p><strong>Merkle Root:</strong> {{ bloque.merkle_root }}</p>
+
+                        <details>
+                            <summary>📋 Transacciones ({{ bloque.l_transacciones|length }})</summary>
+                            <ul>
+                                {% for tx in bloque.l_transacciones %}
+                                    <li>{{ tx }}</li>
+                                {% endfor %}
+                            </ul>
+                        </details>
+
+                        <details>
+                            <summary>🌿 Árbol de Merkle</summary>
+                            <ul>
+                                {% for nivel in bloque.merkle_niveles|reverse %}
+                                    <li><strong>Nivel {{ loop.index0 }}:</strong>
+                                        <ul>
+                                            {% for hash in nivel %}
+                                                <li>{{ hash }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </details>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function toggleModoOscuro(){
+            document.body.classList.toggle('modo-oscuro');
+        }
+    </script>
+</body>
+</html>
